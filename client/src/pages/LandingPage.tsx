@@ -1,53 +1,66 @@
 import styled from "styled-components"
-import CalendarHeatmap from 'react-calendar-heatmap';
-import 'react-calendar-heatmap/dist/styles.css';
 import dayjs from 'dayjs';
 
 const LandingPage = () => {
 
-    // const generateRandomValues = (startDate: dayjs.Dayjs, endDate: dayjs.Dayjs) => {
-    //     const values = [];
-    //     let currentDate = startDate.clone();
-    //     while (currentDate.isBefore(endDate) || currentDate.isSame(endDate, 'day')) {
-    //         values.push({ date: currentDate.toDate(), count: Math.floor(Math.random() * 4) });
-    //         currentDate = currentDate.clone().add(1, 'day');
-    //         }
-    //     return values;
-    // };
-
-    const startDate = dayjs().subtract(1, 'year');
-    const endDate = dayjs();
-    // const values = generateRandomValues(startDate, endDate);
-    const values = [{date: "Feb 04 2024", count: 5}]
-
-    // const idealFormat = dayjs().format('dddd MMM D YYYY')
-    // console.log(idealFormat)
+    const today = dayjs();
+    const lastYearData = Array.from({ length: 365 }, (_, index) =>
+    today.subtract(index, 'day').format('YYYY-MM-DD')
+    );
+    const past365Days = lastYearData.reverse();
 
 
+    const handleSquareHover = (date: string) => {
+    console.log('Hovered over:', date);
+    };
+    
     return (
         <Wrapper>
-            <Title>Yes!!!</Title>
-            <CalendarHeatmap
-            startDate={startDate.toDate()}
-            endDate={endDate.toDate()}
-            values={values}
-            // onMouseOver={(event, value) => {console.log(event, value)}}
-            />
+            <GraphContainer>
+                {past365Days.map((date) => (
+                    <Square key={date} onMouseEnter={() => handleSquareHover(date)}>
+                        {dayjs(date).format('DD')}
+                    </Square>
+                ))}
+            </GraphContainer>
         </Wrapper>
-    )
+    );
+
 }
 
 const Wrapper = styled.div`
-background-color: gainsboro;
-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
+    height: 100vh;
+    background-color: lavender;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
-const Title = styled.p`
-color: violet;
-font-size: 100px;
-`
+const Square = styled.div`
+width: 20px;
+height: 20px;
+background-color: #ebedf0;
+border: 1px solid #ccc;
+/* display: inline-block; */
+text-align: center;
+line-height: 20px;
+cursor: pointer;
+
+&:hover {
+    background-color: #c6e48b;
+}
+`;
+
+const GraphContainer = styled.div`
+background-color: skyblue;
+height: 150px;
+display: grid;
+grid-gap: 1px;
+grid-auto-flow: column;
+grid-template-columns: repeat(7, 1fr); 
+grid-template-rows: repeat(7, 1fr);
+overflow: scroll;
+`;
+
 
 export default LandingPage;
