@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import dayjs from 'dayjs';
+import NavBar from "../components/NavBar";
 
 const LandingPage = () => {
 
@@ -15,30 +16,61 @@ const LandingPage = () => {
     };
     
     return (
-        <Wrapper>
-            <GraphContainer>
-                {past365Days.map((date) => (
-                    <Square key={date} onMouseEnter={() => handleSquareHover(date)}>
-                        {dayjs(date).format('DD')}
-                    </Square>
-                ))}
-            </GraphContainer>
-        </Wrapper>
+        <>
+            <NavBar/>
+            <Wrapper>
+                <GraphContainer>
+                    <Graph>
+                        {past365Days.map((date) => (
+                            <Square key={date} onMouseEnter={() => handleSquareHover(date)}>
+                                {/* {dayjs(date).format('DD')} */}
+                                {/* what is displayed in each square */}
+                            </Square>
+                        ))}
+                    </Graph>
+                </GraphContainer>
+            </Wrapper>
+        </>
     );
 
 }
 
 const Wrapper = styled.div`
-    height: 100vh;
-    background-color: lavender;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+height: 70vh;
+background-color: #FBFBFB;
+display: flex;
+justify-content: center;
+min-width: 1125px;
+padding-top: 150px;
 `
 
+const GraphContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: white;
+/* border: 1px solid black; */
+height: 250px;
+width: 1100px;
+/* box-shadow: 2px 0px 15px 2px #c6e48b; */
+box-shadow: 2px 0px 15px 2px gainsboro;
+`
+
+const Graph = styled.div`
+/* background-color: skyblue; */
+height: 135px;
+display: grid;
+grid-gap: 3px;
+grid-auto-flow: column;
+grid-template-columns: repeat(7, 1fr); 
+grid-template-rows: repeat(7, 1fr);
+overflow: scroll;
+`;
+
+
 const Square = styled.div`
-width: 20px;
-height: 20px;
+width: 15px;
+height: 15px;
 background-color: #ebedf0;
 border: 1px solid #ccc;
 /* display: inline-block; */
@@ -49,17 +81,6 @@ cursor: pointer;
 &:hover {
     background-color: #c6e48b;
 }
-`;
-
-const GraphContainer = styled.div`
-background-color: skyblue;
-height: 150px;
-display: grid;
-grid-gap: 1px;
-grid-auto-flow: column;
-grid-template-columns: repeat(7, 1fr); 
-grid-template-rows: repeat(7, 1fr);
-overflow: scroll;
 `;
 
 
