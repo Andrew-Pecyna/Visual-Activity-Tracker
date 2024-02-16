@@ -17,18 +17,20 @@ const LandingPage = () => {
     
     return (
         <>
-            <NavBar/>
             <Wrapper>
-                <GraphContainer>
-                    <Graph>
-                        {past365Days.map((date) => (
-                            <Square key={date} onMouseEnter={() => handleSquareHover(date)}>
-                                {/* {dayjs(date).format('DD')} */}
-                                {/* what is displayed in each square */}
-                            </Square>
-                        ))}
-                    </Graph>
-                </GraphContainer>
+                <NavBar/>
+                <MainContainer>
+                    <GraphBox>
+                        <Graph>
+                            {past365Days.map((date) => (
+                                <Square key={date} onMouseEnter={() => handleSquareHover(date)}>
+                                    {/* {dayjs(date).format('DD')} */}
+                                    {/* what is displayed in each square */}
+                                </Square>
+                            ))}
+                        </Graph>
+                    </GraphBox>
+                </MainContainer>
             </Wrapper>
         </>
     );
@@ -36,15 +38,23 @@ const LandingPage = () => {
 }
 
 const Wrapper = styled.div`
-height: 70vh;
+height: 100vh;
 background-color: #FBFBFB;
 display: flex;
-justify-content: center;
+flex-direction: column;
 min-width: 1125px;
-padding-top: 150px;
+/* padding-top: 150px; */
 `
 
-const GraphContainer = styled.div`
+const MainContainer = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 60%;
+`
+
+const GraphBox = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
