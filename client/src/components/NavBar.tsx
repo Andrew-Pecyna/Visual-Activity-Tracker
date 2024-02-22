@@ -7,7 +7,7 @@ const NavBar = () => {
     return (
         <NavContainer>
             <Title>Habit<BoxOne>.</BoxOne><BoxTwo>.</BoxTwo><BoxThree>.</BoxThree></Title>
-            <StyledNav to="/">Log In</StyledNav>
+            <StyledNav to="/signin">Log In</StyledNav>
         </NavContainer>
     )
 }
@@ -26,19 +26,18 @@ margin: 0px;
 
 const BoxOne = styled.span`
 /* color: #afe0ea; */
-color: #edb1f2;
+color: lightgrey;
 width: 2px;
 height: 2px;
 `
 const BoxTwo = styled.span`
 /* color: #66b7ea; */
-color: #ea77f4;
+color: gray;
 width: 2px;
 height: 2px;
 `
 const BoxThree = styled.span`
 /* color: #068bc0; */
-color: #e32df3;
 width: 2px;
 height: 2px;
 `

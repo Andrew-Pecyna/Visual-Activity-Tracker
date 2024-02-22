@@ -1,35 +1,15 @@
 import styled from "styled-components"
-import dayjs from 'dayjs';
 import NavBar from "../components/NavBar";
+import Heatmap from "../components/Heatmap";
 
 const LandingPage = () => {
-
-    const today = dayjs();
-    const lastYearData = Array.from({ length: 365 }, (_, index) =>
-    today.subtract(index, 'day').format('YYYY-MM-DD')
-    );
-    const past365Days = lastYearData.reverse();
-
-
-    const handleSquareHover = (date: string) => {
-    console.log('Hovered over:', date);
-    };
     
     return (
         <>
             <Wrapper>
                 <NavBar/>
                 <MainContainer>
-                    <GraphBox>
-                        <Graph>
-                            {past365Days.map((date) => (
-                                <Square key={date} onMouseEnter={() => handleSquareHover(date)}>
-                                    {/* {dayjs(date).format('DD')} */}
-                                    {/* what is displayed in each square */}
-                                </Square>
-                            ))}
-                        </Graph>
-                    </GraphBox>
+                <Heatmap />
                 </MainContainer>
             </Wrapper>
         </>
