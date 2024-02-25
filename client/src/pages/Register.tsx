@@ -2,7 +2,7 @@ import styled from "styled-components"
 import NavBar from "../components/NavBar"
 
 
-const SignIn = () => {
+const Register = () => {
 
     return(
         <Wrapper>
@@ -11,7 +11,7 @@ const SignIn = () => {
                 <FormBox>
                     <Form>
                         <TitleSpan>
-                            <Title>Sign In</Title>
+                            <Title>Sign Up</Title>
                         </TitleSpan>
                         <FormContents>
                             <span>
@@ -21,7 +21,7 @@ const SignIn = () => {
                                 <Input type="password" id="password" name="password" placeholder="Password" required></Input>
                             </span>
                             <span>
-                                <Btn type="submit">Log in</Btn>
+                                <Btn type="submit">Register</Btn>
                             </span>
                         </FormContents>
                     </Form>
@@ -101,4 +101,4 @@ font-size: 18px;
 font-family: monospace;
 `
 
-export default SignIn;
+export default Register;
